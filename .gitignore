@@ -1,0 +1,46 @@
+# Ignorar la carpeta 'data' completa
+/data/
+
+# Archivos de entorno
+.env
+*.env
+
+# Archivos de log
+*.log
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de backup
+*~
+*.swp
+
+# Node.js (si usas Node)
+node_modules/
+npm-debug.log
+
+# Python (si usas Python)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+
+# Java (si usas Java)
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# Visual Studio Code
+.vscode/
+
+# Archivos de compilación
+dist/
+build/
+
+# Archivos de control de versiones de otros sistemas
+.svn/
+.hg/
