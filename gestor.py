@@ -117,31 +117,8 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-import getpass
-from argon2 import PasswordHasher
-
-MASTER_FILE = "./data/master.hash"
-
-def validar_admin():
-    if not os.path.exists(MASTER_FILE):
-        print("Primero crea tu clave maestra con crear_contraseña_maestra.py")
-        exit()
-
-    with open(MASTER_FILE, "r") as f:
-        hash = f.read()
-
-    intento = getpass.getpass("Clave maestra para iniciar el servidor: ")
-    try:
-        PasswordHasher().verify(hash, intento)
-        print("✅ Acceso autorizado al servidor.")
-    except:
-        print("❌ Clave incorrecta. Acceso denegado.")
-        exit()
-
 # ─── Arranque con HTTPS de desarrollo ─────────────────────────────────────────
 
 if __name__ == '__main__':
-    validar_admin()
-
     # Con SSL auto-generado para desarrollo
     app.run(host='0.0.0.0', port=5000, ssl_context='adhoc')
