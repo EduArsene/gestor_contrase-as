@@ -1,5 +1,5 @@
 # Ignorar la carpeta 'data' completa
-/data/
+/data/master.hash
 
 # Archivos de entorno
 .env

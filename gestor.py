@@ -56,7 +56,7 @@ REGISTER_HTML = """
 </form>
 <p><a href="{{ url_for('login') }}">Volver a login</a></p>
 {% with msg = get_flashed_messages() %}
-  {% if msg %}<p style="color:red;">{{ msg[0] }}</p>{% endif %}
+  {% if msg %}<p style="color:green;">{{ msg[0] }}</p>{% endif %}
 {% endwith %}
 """
 
@@ -66,6 +66,8 @@ DASH_HTML = """
 <p>Este mensaje está cifrado con Fernet:</p>
 <pre>{{ token }}</pre>
 <p><a href="{{ url_for('logout') }}">Salir</a></p>
+<p><a href="{{ url_for('cambiar_clave') }}">🔁 Cambiar contraseña</a></p>
+
 """
 
 # ─── Rutas ───────────────────────────────────────────────────────────────────
@@ -89,6 +91,52 @@ def register():
             except sqlite3.IntegrityError:
                 flash("El usuario ya existe.")
     return render_template_string(REGISTER_HTML)
+
+@app.route('/cambiar_clave', methods=['GET', 'POST'])
+def cambiar_clave():
+    if 'user' not in session:
+        return redirect(url_for('login'))
+
+    mensaje = ""
+    if request.method == 'POST':
+        actual = request.form['actual']
+        nueva = request.form['nueva']
+        repetir = request.form['repetir']
+
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        row = cursor.execute("SELECT pwd_hash FROM users WHERE username=?", (session['user'],)).fetchone()
+
+        if not row:
+            mensaje = "Usuario no encontrado."
+        else:
+            try:
+                ph.verify(row[0], actual)
+                if nueva != repetir:
+                    mensaje = "Las nuevas contraseñas no coinciden."
+                else:
+                    nuevo_hash = ph.hash(nueva)
+                    cursor.execute("UPDATE users SET pwd_hash=? WHERE username=?", (nuevo_hash, session['user']))
+                    conn.commit()
+                    mensaje = "Contraseña actualizada con éxito."
+            except:
+                mensaje = "Contraseña actual incorrecta."
+
+        conn.close()
+
+    return render_template_string("""
+        <!doctype html><title>Cambiar Contraseña</title>
+        <h2>Cambiar Contraseña</h2>
+        <form method="post">
+            Contraseña actual: <input type="password" name="actual"><br>
+            Nueva contraseña: <input type="password" name="nueva"><br>
+            Confirmar nueva: <input type="password" name="repetir"><br>
+            <button type="submit">Cambiar</button>
+        </form>
+        <p style="color:green;">{{ mensaje }}</p>
+        <p><a href="{{ url_for('login') }}">Volver al inicio</a></p>
+    """, mensaje=mensaje)
+
 
 @app.route('/', methods=['GET','POST'])
 @app.route('/login', methods=['GET','POST'])

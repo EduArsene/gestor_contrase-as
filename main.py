@@ -39,7 +39,7 @@ tk.Label(root, text="Panel de Control", font=("Segoe UI", 14), bg="#f4f4f4").pac
 botones = [
     ("▶️ Iniciar Servidor", lambda: ejecutar_script("gestor"), "#27ae60"),
     ("📂 Ver Contenido", lambda: ejecutar_script("ver_contenido"), "#2980b9"),
-    ("🔐 Crear/Modificar Contraseña", lambda: ejecutar_script("crear_contraseña"), "#8e44ad"),
+    ("🔐 Crear/Modificar Contraseña (MASTER)", lambda: ejecutar_script("crear_contraseña"), "#8e44ad"),
     ("❌ Salir", salir, "#c0392b")
 ]
 
