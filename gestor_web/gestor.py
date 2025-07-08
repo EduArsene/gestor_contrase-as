@@ -165,7 +165,6 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-# ─── Arranque con HTTPS de desarrollo ─────────────────────────────────────────
 
 if __name__ == '__main__':
     # Con SSL auto-generado para desarrollo

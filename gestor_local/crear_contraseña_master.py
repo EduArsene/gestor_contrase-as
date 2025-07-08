@@ -43,11 +43,11 @@ def mostrar_formulario_nueva_contraseña():
     frame = tk.Frame(root, bg="#f4f4f4")
     frame.pack(pady=10)
 
-    tk.Label(frame, text="🔐 Nueva contraseña:", font=("Segoe UI", 10), bg="#f4f4f4").grid(row=0, column=0, sticky="e", padx=5, pady=5)
+    tk.Label(frame, text="Nueva contraseña:", font=("Segoe UI", 10), bg="#f4f4f4").grid(row=0, column=0, sticky="e", padx=5, pady=5)
     entry_pwd = tk.Entry(frame, show="*", width=30)
     entry_pwd.grid(row=0, column=1, padx=5, pady=5)
 
-    tk.Label(frame, text="🔁 Confirmar:", font=("Segoe UI", 10), bg="#f4f4f4").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+    tk.Label(frame, text="Confirmar:", font=("Segoe UI", 10), bg="#f4f4f4").grid(row=1, column=0, sticky="e", padx=5, pady=5)
     entry_pwd2 = tk.Entry(frame, show="*", width=30)
     entry_pwd2.grid(row=1, column=1, padx=5, pady=5)
 
@@ -69,7 +69,7 @@ def verificar_contraseña_actual():
         ventana_verificacion.destroy()
         mostrar_formulario_nueva_contraseña()
     except argon2_exceptions.VerifyMismatchError:
-        messagebox.showerror("Acceso denegado", "❌ Contraseña incorrecta.")
+        messagebox.showerror("Acceso denegado", "Contraseña incorrecta.")
         ventana_verificacion.destroy()
         sys.exit()
 
@@ -106,7 +106,7 @@ if os.path.exists(MASTER_FILE):
     ventana_opciones.resizable(False, False)
 
     tk.Label(ventana_opciones, text="Molitalia", font=("Segoe UI", 20, "bold"), bg="#f4f4f4", fg="#2c3e50").pack(pady=10)
-    tk.Label(ventana_opciones, text="⚠️ Ya existe una contraseña maestra configurada.", font=("Segoe UI", 11), bg="#f4f4f4").pack(pady=5)
+    tk.Label(ventana_opciones, text="Ya existe una contraseña maestra configurada.", font=("Segoe UI", 11), bg="#f4f4f4").pack(pady=5)
 
     tk.Button(ventana_opciones, text="Cambiar contraseña del administrador", command=mostrar_verificacion, bg="#27ae60", fg="white", font=("Segoe UI", 10, "bold"), width=30).pack(pady=10)
     tk.Button(ventana_opciones, text="Cerrar", command=cerrar_aplicacion, bg="#c0392b", fg="white", font=("Segoe UI", 10, "bold"), width=30).pack(pady=5)

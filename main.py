@@ -6,9 +6,9 @@ import sys
 
 # Ruta de los scripts
 SCRIPTS = {
-    "gestor": "gestor.py",
-    "ver_contenido": "ver_contenido.py",
-    "crear_contraseña": "crear_contraseña_master.py"
+    "gestor": "./gestor_web/gestor.py",
+    "ver_contenido": "./gestor_local/ver_contenido.py",
+    "crear_contraseña": "./gestor_local/crear_contraseña_master.py"
 }
 
 def ejecutar_script(nombre):
@@ -45,6 +45,6 @@ botones = [
 
 for texto, comando, color in botones:
     tk.Button(root, text=texto, command=comando, bg=color, fg="white",
-              font=("Segoe UI", 10, "bold"), width=30, height=2).pack(pady=8)
+              font=("Segoe UI", 10, "bold"), width=35, height=2).pack(pady=8)
 
 root.mainloop()
