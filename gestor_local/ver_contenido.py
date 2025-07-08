@@ -8,7 +8,7 @@ import sys
 from seguridad import verificar_clave_maestra
 verificar_clave_maestra()
 
-DB_PATH = "data.db"
+DB_PATH = "./gestor_web/data.db"
 
 if not os.path.isfile(DB_PATH):
     messagebox.showerror("Molitalia - Error", f"BD no encontrada'{DB_PATH}'.")
