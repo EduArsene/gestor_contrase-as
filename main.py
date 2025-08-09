@@ -26,7 +26,7 @@ def salir():
 
 # Crear ventana principal
 root = tk.Tk()
-root.title("Molitalia - Menú Principal")
+root.title("Gestor - Menú Principal")
 root.geometry("500x450")
 root.configure(bg="#f4f4f4")
 root.resizable(False, False)
