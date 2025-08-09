@@ -1,5 +1,4 @@
-"empresa" Password Manager
-"empresa" Password Manager es una aplicación de escritorio desarrollada en Python con interfaz gráfica en Tkinter, diseñada para gestionar de forma segura las credenciales de acceso de sistemas internos. Este proyecto está orientado a entornos empresariales que requieren confidencialidad, integridad y control de acceso robusto.
+Password Manager es una aplicación de escritorio desarrollada en Python con interfaz gráfica en Tkinter, diseñada para gestionar de forma segura las credenciales de acceso de sistemas internos. Este proyecto está orientado a entornos empresariales que requieren confidencialidad, integridad y control de acceso robusto.
 
 ## Características principales
 Gestión de contraseñas cifradas con cryptography y argon2.
